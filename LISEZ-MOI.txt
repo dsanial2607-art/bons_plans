@@ -1,4 +1,6 @@
-KETTY BONS PLANS V4 — interface moderne
-Conserve la mécanique V3 : MP3 FR/EN, volume initial 30 %, retour accueil 60 s, tirage sans répétition, administration cachée par 3 pressions en haut à droite, actualités datables.
-Nouveauté : interface photo plein écran, animations douces, accroche superposée, boutons tactiles et pictogrammes.
-Pour GitHub : remplacez index.html et bons-plans.json à la racine par ceux de cette V4. Les photos vont dans photos/ et les MP3 dans audio/fr/ et audio/en/.
+KETTY BONS PLANS V5 - contenus validés
+11 bons plans permanents FR/EN intégrés.
+Rubrique 'En ce moment' présente dans l'administration mais vide côté public tant qu'aucune actualité n'est créée.
+Les scripts audio sont stockés dans bons-plans.json pour pouvoir être modifiés dans l'administration; la lecture publique utilise les fichiers MP3 correspondants.
+Volume initial 30 %, 3 pressions rapides en haut à droite = administration, retour accueil 60 s, tirage sans répétition.
+Pour GitHub : remplacer index.html et bons-plans.json à la racine. Ajouter ensuite les photos dans photos/ et MP3 dans audio/fr et audio/en.

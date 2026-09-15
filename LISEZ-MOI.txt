@@ -1,1 +1,4 @@
-V3 administrable. 3 pressions rapides en haut à droite = administration. Volume initial 30 %. Contenus, dates, MP3 et photos modifiables. Les changements sont mémorisés dans le navigateur de Ketty. Retour accueil après 60 s. Tirage sans répétition.
+KETTY BONS PLANS V4 — interface moderne
+Conserve la mécanique V3 : MP3 FR/EN, volume initial 30 %, retour accueil 60 s, tirage sans répétition, administration cachée par 3 pressions en haut à droite, actualités datables.
+Nouveauté : interface photo plein écran, animations douces, accroche superposée, boutons tactiles et pictogrammes.
+Pour GitHub : remplacez index.html et bons-plans.json à la racine par ceux de cette V4. Les photos vont dans photos/ et les MP3 dans audio/fr/ et audio/en/.

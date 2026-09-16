@@ -1,6 +1,27 @@
-KETTY BONS PLANS V5 - contenus validés
-11 bons plans permanents FR/EN intégrés.
-Rubrique 'En ce moment' présente dans l'administration mais vide côté public tant qu'aucune actualité n'est créée.
-Les scripts audio sont stockés dans bons-plans.json pour pouvoir être modifiés dans l'administration; la lecture publique utilise les fichiers MP3 correspondants.
-Volume initial 30 %, 3 pressions rapides en haut à droite = administration, retour accueil 60 s, tirage sans répétition.
-Pour GitHub : remplacer index.html et bons-plans.json à la racine. Ajouter ensuite les photos dans photos/ et MP3 dans audio/fr et audio/en.
+KETTY BONS PLANS V4
+===================
+
+1. Décompressez ce dossier.
+2. Envoyez TOUT son contenu à la racine du dépôt GitHub bons_plans.
+3. Dans GitHub Pages : Settings > Pages > Deploy from a branch > main > /(root).
+4. L'application charge bons-plans.json.
+5. Triple appui dans l'angle supérieur droit = menu administrateur.
+6. Volume par défaut : 30 %.
+7. Retour automatique à l'accueil après 60 secondes d'inactivité.
+8. Les bons plans sont tirés dans un ordre aléatoire sans répétition avant de recommencer.
+
+PHOTOS
+Placez/remplacez les fichiers dans /photos en conservant exactement leur nom.
+Une photo absente affiche un message clair au lieu de bloquer l'application.
+
+AUDIO
+Placez les MP3 français dans /audio/fr et anglais dans /audio/en.
+Le nom attendu est indiqué dans bons-plans.json.
+Si un MP3 manque, l'application continue de fonctionner sans bloquer l'écran.
+
+ADMINISTRATION
+Les modifications faites dans le menu caché sont enregistrées localement sur la tablette.
+Pour une modification permanente après rechargement/changement d'appareil, modifiez bons-plans.json sur GitHub.
+
+EN CE MOMENT
+La fiche est fournie mais désactivée. Passez "active" à true, ajoutez photo/MP3/textes et éventuellement start/end au format AAAA-MM-JJ.

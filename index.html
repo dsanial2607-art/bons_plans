@@ -19,7 +19,7 @@ main{height:calc(100vh - 180px);display:flex;align-items:center;justify-content:
 .pic img{width:100%;height:100%;object-fit:contain;background:#f3f1ec}.missing{padding:30px;text-align:center;font-size:23px}
 .copy{padding:46px;display:flex;flex-direction:column;justify-content:center}.copy h1{font-size:45px;line-height:1.05;margin:0 0 24px}.copy p{font-size:27px;line-height:1.35;margin:0}
 .actions{height:96px;display:flex;gap:14px;justify-content:center;align-items:center}.actions button{padding:15px 22px;border-radius:18px}.actions .primary{padding:17px 28px}
-#hot{position:fixed;left:0;bottom:0;width:80px;height:80px;z-index:30}
+#hot{position:fixed;left:0;top:0;width:90px;height:90px;z-index:30}
 .modal{position:fixed;inset:0;background:#0009;z-index:50;display:flex;align-items:center;justify-content:center}.panel{background:white;width:92vw;max-width:1100px;max-height:90vh;overflow:auto;border-radius:28px;padding:30px}
 .close{float:right;background:#eee;border-radius:14px;padding:10px 14px}.toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:18px 0}.toolbar button{padding:12px 16px;border-radius:14px}
 .row{border-top:1px solid #ddd;padding:14px 4px;display:grid;grid-template-columns:50px 1fr 130px;gap:12px;align-items:center}.row input[type=text]{font-size:17px;padding:10px;border:1px solid #ccc;border-radius:10px}
@@ -45,7 +45,7 @@ linear-gradient(0deg,transparent 38%,#fff 38% 44%,#c8102e 44% 56%,#fff 56% 62%,t
 <button id="enb" class="lang" type="button" aria-label="English"><span class="flag ukflag" aria-hidden="true"><i></i></span></button></div></header>
 <main id="m"></main><div class="actions" id="act" style="display:none"><button onclick="play()">🔊 Réécouter</button><button class="primary" onclick="next()">✨ Un autre bon plan</button><button onclick="home()">⌂ Accueil</button></div><div id="hot"></div><audio id="audio"></audio>
 <script>
-let items=[],original=[],lang='fr',cur=null,deck=[],timer=null,taps=[],introPlayed={fr:false,en:false},vol=parseFloat(localStorage.getItem('kettyVolume')||'.30');
+let items=[],original=[],lang='fr',cur=null,deck=[],timer=null,taps=[],introPlayed={fr:false,en:false},vol=.30;localStorage.setItem('kettyVolume','0.30');
 const A=document.getElementById('audio'),m=document.getElementById('m'),act=document.getElementById('act'); A.volume=vol;
 fetch('bons-plans.json?'+Date.now()).then(r=>{if(!r.ok)throw Error();return r.json()}).then(x=>{original=x;items=JSON.parse(localStorage.getItem('kettyContent')||JSON.stringify(x));home();setTimeout(()=>playIntro('fr'),500)}).catch(()=>m.innerHTML='<div class="home"><h1>⚠️ Configuration introuvable</h1><p>Vérifiez le fichier bons-plans.json.</p></div>');
 function eligible(){const d=new Date().toISOString().slice(0,10);return items.filter(x=>x.active&&(!x.start||x.start<=d)&&(!x.end||x.end>=d)&&(lang==='fr'?x.fr_title:x.en_title))}

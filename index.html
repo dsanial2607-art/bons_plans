@@ -25,8 +25,24 @@ main{height:calc(100vh - 180px);display:flex;align-items:center;justify-content:
 .row{border-top:1px solid #ddd;padding:14px 4px;display:grid;grid-template-columns:50px 1fr 130px;gap:12px;align-items:center}.row input[type=text]{font-size:17px;padding:10px;border:1px solid #ccc;border-radius:10px}
 .editor{display:grid;grid-template-columns:180px 1fr;gap:10px 14px;margin-top:20px}.editor input{padding:10px;font-size:16px;border:1px solid #bbb;border-radius:9px}.editor .wide{grid-column:1/-1}
 .note{background:#fff5cf;padding:12px 15px;border-radius:12px;font-size:15px}
+
+/* Sélecteur de langue optimisé pour la tablette KettyBot */
+.langs{display:flex;gap:14px;align-items:center;padding:6px 22px 6px 6px;flex-shrink:0}
+.lang{position:relative;width:72px;height:72px;min-width:72px;min-height:72px;padding:4px;border-radius:50%;border:4px solid transparent;background:#fff;overflow:hidden;box-shadow:0 3px 10px rgba(0,0,0,.16);touch-action:manipulation;-webkit-tap-highlight-color:transparent;cursor:pointer}
+.lang.on{border-color:#ff5b45;box-shadow:0 0 0 3px rgba(255,91,69,.18)}
+.flag{position:relative;display:block;width:100%;height:100%;border-radius:50%;overflow:hidden}
+.frflag{background:linear-gradient(90deg,#0055a4 0 33.333%,#fff 33.333% 66.666%,#ef4135 66.666% 100%)}
+.ukflag{background:
+linear-gradient(33deg,transparent 43%,#fff 43% 48%,#c8102e 48% 52%,#fff 52% 57%,transparent 57%),
+linear-gradient(-33deg,transparent 43%,#fff 43% 48%,#c8102e 48% 52%,#fff 52% 57%,transparent 57%),
+linear-gradient(90deg,transparent 38%,#fff 38% 44%,#c8102e 44% 56%,#fff 56% 62%,transparent 62%),
+linear-gradient(0deg,transparent 38%,#fff 38% 44%,#c8102e 44% 56%,#fff 56% 62%,transparent 62%),
+#012169}
+@media(max-width:900px){.langs{padding-right:18px}.lang{width:66px;height:66px;min-width:66px;min-height:66px}}
+
 </style></head>
-<body><header><div class="brand">✨ Les bons plans de Ketty</div><div class="langs" aria-label="Choix de langue"><button id="frb" class="lang on" type="button" aria-label="Français" onclick="setLang('fr')"><span class="flag frflag" aria-hidden="true"></span></button><button id="enb" class="lang" type="button" aria-label="English" onclick="setLang('en')"><span class="flag ukflag" aria-hidden="true">🇬🇧</span></button></div></header>
+<body><header><div class="brand">✨ Les bons plans de Ketty</div><div class="langs" aria-label="Choix de langue"><button id="frb" class="lang on" type="button" aria-label="Français"><span class="flag frflag" aria-hidden="true"></span></button>
+<button id="enb" class="lang" type="button" aria-label="English"><span class="flag ukflag" aria-hidden="true"><i></i></span></button></div></header>
 <main id="m"></main><div class="actions" id="act" style="display:none"><button onclick="play()">🔊 Réécouter</button><button class="primary" onclick="next()">✨ Un autre bon plan</button><button onclick="home()">⌂ Accueil</button></div><div id="hot"></div><audio id="audio"></audio>
 <script>
 let items=[],original=[],lang='fr',cur=null,deck=[],timer=null,taps=[],introPlayed={fr:false,en:false},vol=parseFloat(localStorage.getItem('kettyVolume')||'.30');
@@ -65,4 +81,25 @@ function edit(i){let x=items[i],fields=['fr_title','fr_hook','en_title','en_hook
 function addNews(){items.push({id:'actu-'+Date.now(),active:true,category:'actualite',start:'',end:'',image:'photos/en-ce-moment.jpg',fr_title:'En ce moment',fr_hook:'À découvrir en ce moment !',fr_audio:'audio/fr/en-ce-moment.mp3',en_title:"What's on now",en_hook:'Discover what is happening now!',en_audio:'audio/en/en-ce-moment.mp3'});render()}
 function save(){localStorage.setItem('kettyContent',JSON.stringify(items));localStorage.setItem('kettyVolume',vol);alert('Enregistré sur cette tablette.')}
 function restore(){if(confirm('Effacer les modifications locales et recharger la version GitHub ?')){localStorage.removeItem('kettyContent');location.reload()}}
+
+function bindLanguageButtons(){
+  const frBtn=document.getElementById('frb');
+  const enBtn=document.getElementById('enb');
+  if(frBtn){
+    frBtn.onclick=null;
+    frBtn.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();setLang('fr');});
+    frBtn.addEventListener('touchend',function(e){e.preventDefault();setLang('fr');},{passive:false});
+  }
+  if(enBtn){
+    enBtn.onclick=null;
+    enBtn.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();setLang('en');});
+    enBtn.addEventListener('touchend',function(e){e.preventDefault();setLang('en');},{passive:false});
+  }
+}
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded',bindLanguageButtons);
+}else{
+  bindLanguageButtons();
+}
+
 </script></body></html>
